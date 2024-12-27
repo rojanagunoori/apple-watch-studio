@@ -10,7 +10,7 @@ const DesignstudioFooter = () => {
  
   //console.log(activeFilterOptions)
 
-  useEffect(() => {
+ /* useEffect(() => {
     // Ensure options and selectedOptions are in sync when the component loads or when collection changes
     if (options.size.length > 0 && options.case.length > 0 && options.band.length > 0) {
       setSelectedOptions({
@@ -20,14 +20,26 @@ const DesignstudioFooter = () => {
       });
     }
   }, [options, setSelectedOptions,selectedOptions.size,selectedOptions.case,selectedOptions.band]);
+*/
+
+useEffect(() => {
+  // Ensure options and selectedOptions are in sync when the component loads or when collection changes
+  if (options.size.length > 0 && options.case.length > 0 && options.band.length > 0) {
+    setSelectedOptions({
+      size: selectedOptions.size || options.size[0]?.value,  // Access the `value` property
+      case: selectedOptions.case || options.case[0]?.value,  // Access the `value` property
+      band: selectedOptions.band || options.band[0]?.value,  // Access the `value` property
+    });
+  }
+}, [options, setSelectedOptions, selectedOptions.size, selectedOptions.case, selectedOptions.band]);
 
   
-  const handleFilterClickOptins = (filter) => {
+  const handleFilterClickOptins = (filter: string) => {
     setActiveFilterOptions(activeFilterOptions === filter ? null : filter);
   };
  
 
-  const handleOptionSelect = (filter, option) => {
+  const handleOptionSelect = (filter: string, option:string) => {
     setSelectedOptions({
       ...selectedOptions,
       [filter]: option,
@@ -62,15 +74,25 @@ const DesignstudioFooter = () => {
           {activeFilterOptions === "size" && (
             <div className={styles.rfDesignstudioFilterdim}>
               <ul className={styles.rfDesignstudioFilterdimOptions}>
-                {sizeOptions.map((size) => (
+                {/*sizeOptions.map((size) => (
                   <li
-                    key={size}
+                  key={size.value}
                     onClick={() => handleOptionSelect("size", size)}
                     className={selectedOptions.size === size ? styles.selected : ""}
                   >
-                    <span>{size}</span>
+                    <span>{size.value}</span>
                   </li>
-                ))}
+                ))*/}
+                {sizeOptions.map((size) => (
+  <li
+    key={size.value}  // Use the `value` property of the size object as the key
+    onClick={() => handleOptionSelect("size", size.value)}  // Pass the `value` to the select handler
+    className={selectedOptions.size === size.value ? styles.selected : ""}  // Compare using `value`
+  >
+    <span>{size.value}</span>  {/* Display the `value` property */}
+  </li>
+))}
+
               </ul>
             </div>
           )}
@@ -102,11 +124,11 @@ const DesignstudioFooter = () => {
               <ul className={styles.rfDesignstudioFilterdimOptions}>
                 {caseOptions.map((caseOption) => (
                   <li
-                    key={caseOption}
-                    onClick={() => handleOptionSelect("case", caseOption)}
-                    className={selectedOptions.case === caseOption ? styles.selected : ""}
+                    key={caseOption.value}
+                    onClick={() => handleOptionSelect("case", caseOption.value)}
+                    className={selectedOptions.case === caseOption.value ? styles.selected : ""}
                   >
-                    <span>{caseOption}</span>
+                    <span>{caseOption.value}</span>
                   </li>
                 ))}
               </ul>
@@ -140,11 +162,11 @@ const DesignstudioFooter = () => {
               <ul className={styles.rfDesignstudioFilterdimOptions}>
                 {bandOptions.map((band) => (
                   <li
-                    key={band}
-                    onClick={() => handleOptionSelect("band", band)}
-                    className={selectedOptions.band === band ? styles.selected : ""}
+                    key={band.value}
+                    onClick={() => handleOptionSelect("band", band.value)}
+                    className={selectedOptions.band === band.value ? styles.selected : ""}
                   >
-                    <span>{band}</span>
+                    <span>{band.value}</span>
                   </li>
                 ))}
               </ul>

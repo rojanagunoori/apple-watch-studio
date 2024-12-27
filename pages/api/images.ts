@@ -15,7 +15,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Cache-Control', 'no-store');
 
     res.status(200).json({ images });
-  } catch (error) {
-    res.status(500).json({ message: 'Error reading directory', error: error.message });
+  }  catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: 'Error reading directory', error: error.message });
+    } else {
+      res.status(500).json({ message: 'Unknown error occurred', error: 'Unknown error' });
+    }
   }
 }

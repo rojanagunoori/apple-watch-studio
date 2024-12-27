@@ -17,7 +17,7 @@ const DesignImageFooter = () => {
   const activeCase = selectedOptions.case
   const activeBand = selectedOptions.band
 
-  const [setSelectedImage] = useState(null);  // Store the selected image link
+  //const [setSelectedImage] = useState(null);  // Store the selected image link
   // const [backgroundImage, setBackgroundImage] = useState(null);
   //const [images, setImages] = useState([]);
   const [images, setImages] = useState<string[]>([]);
@@ -33,7 +33,7 @@ const DesignImageFooter = () => {
         : selectedCollection === "Apple Watch SE"
           ? //"/assets/se/band/initial_band.jpg"
           "/assets/series_10/band/nike-sport/normal/NT  Black Solo Loop.jpg"
-          : null
+          : ""
   );
 
   const [activeCaseImage] = useState(
@@ -46,7 +46,7 @@ const DesignImageFooter = () => {
         : selectedCollection === "Apple Watch SE"
           ?// "/assets/se/cases/initial_case.jpg"
           "/assets/watche_SE/cases/aluminum-midnight-se.png"
-          : null
+          : ""
   );
 
 
@@ -213,10 +213,21 @@ const DesignImageFooter = () => {
     );
   };
 
+
+  /*
   const handleSelect = (index) => {
     setCurrentIndex(index);
     setSelectedImage(images[index]);
   };
+  */
+  const handleSelect = (index: number) => {
+    if (images && images[index]) {
+      setCurrentIndex(index);
+  //    setSelectedImage(images[index]);
+    }
+  };
+  
+  
 
 
   const fetchImages = async (path: string) => {
@@ -279,22 +290,23 @@ const DesignImageFooter = () => {
                 >
                   <div className={styles.imageContainer}>
                     {/* Render the image */}
-                    <Image
+                    <Image  objectFit="contain"
                       src={activeBandImage}
                       alt={`Band ${index + 1}`}
                       className={styles.img}
                     />
                     {index === currentIndex && (
                       // Render the selected image with dynamic size adjustment
-                      <Image
+                      <Image  objectFit="contain"
                         className={`${styles.selectedImage}`}
                         src={activeCaseImage}
                         alt={`Selected Band ${index + 1}`}
                         style={{
-                          width: `${parseInt(selectedOptions.size) * 5}px`, // Dynamically calculate width
-                          height: `${parseInt(selectedOptions.size) * 5}px`, // Dynamically calculate height
+                          width: `${parseInt(selectedOptions.size ?? "0") * 5}px`, // Fallback to "0" if size is null
+                          height: `${parseInt(selectedOptions.size ?? "0") * 5}px`, // Fallback to "0" if size is null
                           objectFit: "contain",
                         }}
+                        
                       />
                     )}
                   </div>
@@ -323,9 +335,9 @@ const DesignImageFooter = () => {
               >
                 <div className={styles.imageContainer}>
 
-                  <Image src={image} alt={`Band ${index + 1}`} className={`${styles.img} `} />
+                  <Image  objectFit="contain" src={image} alt={`Band ${index + 1}`} className={`${styles.img} `} />
                   {index === currentIndex && (
-                    <Image
+                    <Image  objectFit="contain"
                       className={`${styles.selectedImage} ${styles.selectedImageCase}`}
                       src={activeBandImage}
                       // src="/assets/series_10/cases/jetblack.png"//{image}
@@ -354,9 +366,9 @@ const DesignImageFooter = () => {
                 onClick={() => handleSelect(index)}
               >
                 <div className={styles.imageContainer}>
-                  <Image src={image} alt={`Band ${index + 1}`} className={styles.img} />
+                  <Image  objectFit="contain" src={image} alt={`Band ${index + 1}`} className={styles.img} />
                   {index === currentIndex && (
-                    <Image
+                    <Image  objectFit="contain"
                       className={`${styles.selectedImage} ${styles.selectedImageBand}`}
                       src={activeCaseImage}
                       //  src="/assets/series_10/cases/jetblack.png"//{image}

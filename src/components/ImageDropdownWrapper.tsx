@@ -17,7 +17,7 @@ const ImageDropdownWrapper = () => {
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleItemClick = (index, item) => {
+  const handleItemClick = (index:number, item:string) => {
     setActiveIndex(index);
     updateOptions(item);
   };

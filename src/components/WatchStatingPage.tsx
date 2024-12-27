@@ -23,10 +23,12 @@ export default function WatchStudio() {
   return (
     <div className={styles.studioWrapper}>
       <div className={styles.studiologo}>
-        <Image
+        <Image  objectFit="contain"
           src="https://logowik.com/content/uploads/images/930_applewatch.jpg"
           alt="Apple Watch Studio Logo"
           className={styles.logoImage}
+          width={500} // Adjust the width
+  height={500}
          
         />
       </div>
