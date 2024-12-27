@@ -10,8 +10,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const images = imageFiles
       .filter((file) => file.endsWith('.jpg') || file.endsWith('.png'))
-      .map((file, index) => {
-        const customName = `hermes-cases-${index + 1}-${file}`;
+      .map((file) => {
+        //const customName = `hermes-cases-${index + 1}-${file}`;
         return `/assets/hermes_series_10/cases/${file}`;
         //return `/assets/hermes_series_10/cases/${customName}`;
       });

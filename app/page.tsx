@@ -6,9 +6,9 @@ import styles from "../styles/Page.module.css";
 
 export default function Home() {
   return (
-    <div>
-       <FiltersProvider>
-       <WatchStatingPage/>
+    <div className={styles.con}>
+       <FiltersProvider >
+       <WatchStatingPage />
        </FiltersProvider>
      
 

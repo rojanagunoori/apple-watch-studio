@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/DesignImageFooter.module.css";
 import "../../public/assets/series_10/cases/jetblack.png"
 import { useFilters } from "@/context/FiltersContext";
+import Image from "next/image";
+
 //import "../../public/assets/hermes_series_10/band/normal"
 //import "../../public/assets/series_10/band/nike-sport/normal"
 //import "../../public/assets/watche_SE/band"
@@ -10,18 +12,18 @@ import { useFilters } from "@/context/FiltersContext";
 //import "../../public/assets/watche_SE/cases"
 
 const DesignImageFooter = () => {
-  const { selectedCollection, options, updateOptions, selectedOptions, setSelectedOptions, activeFilterOptions, setActiveFilterOptions } = useFilters();
+  const { selectedCollection, options, selectedOptions, activeFilterOptions, } = useFilters();
   const activeSize = selectedOptions.size
   const activeCase = selectedOptions.case
   const activeBand = selectedOptions.band
 
-  const [selectedImage, setSelectedImage] = useState(null);  // Store the selected image link
+  const [setSelectedImage] = useState(null);  // Store the selected image link
   // const [backgroundImage, setBackgroundImage] = useState(null);
   //const [images, setImages] = useState([]);
   const [images, setImages] = useState<string[]>([]);
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
 
-  const [activeBandImage, setActiveBandImage] = useState(
+  const [activeBandImage] = useState(
     selectedCollection === "Apple Watch Series 10"
       ? //"/assets/series_10/band/nike-sport/normal/NT Black Sport Band.jpg"
       "/assets/series_10/band/nike-sport/normal/NT  Black Solo Loop.jpg"
@@ -34,7 +36,7 @@ const DesignImageFooter = () => {
           : null
   );
 
-  const [activeCaseImage, setActiveCaseImage] = useState(
+  const [activeCaseImage] = useState(
     selectedCollection === "Apple Watch Series 10"
       ? //"/assets/series_10/cases/jetblack.png"
       "/assets/series_10/cases/jetblack.png"
@@ -50,13 +52,13 @@ const DesignImageFooter = () => {
 
 
   console.log(activeSize, activeCase, activeBand, activeFilterOptions)
-  const images1 = [
+  /*const images1 = [
     "/assets/series_10/band/nike-sport/normal/NT  Black Solo Loop.jpg",
     "/assets/series_10/band/nike-sport/normal/NT  Black Solo Loop.jpg",
     "/assets/series_10/band/nike-sport/normal/NT Black Magnetic Link.jpg",
     "/assets/series_10/band/nike-sport/normal/NT Black Sport Band.jpg",
     "/assets/series_10/band/nike-sport/normal/NT Black Unity Braided Solo Loop.jpg",
-  ];
+  ];*/
   /*
     const updateImages = () => {
       let newImages = [];
@@ -131,72 +133,73 @@ const DesignImageFooter = () => {
       }, [selectedCollection, selectedOptions, activeFilterOptions]);
   */
 
-  const updateImages = () => {
-    let apiPath = '';
-    let initialBackgroundImage = '';
-    let defaultApiPath = '/api/hermes-band-images';
-
-    if (selectedCollection === "Apple Watch Series 10") {
-      if (activeFilterOptions === "case") {
-        console.log("clicked case")
-        apiPath = '/api/hermes-cases-images';
-        if (activeCase === "Aluminum") {
-          apiPath = '/api/hermes-cases-images';
-          initialBackgroundImage = "/assets/series_10/cases/jetblack.png";
-        } else if (activeCase === "Titanium") {
-          apiPath = '/api/hermes-cases-images';
-          initialBackgroundImage = "/assets/series_10/cases/titanium.png";
-        }
-      }else   if (activeFilterOptions === "band") {
-        console.log("clicked band")
-        apiPath = '/api/hermes-band-images';
-        if (activeCase === "Aluminum") {
-          apiPath = '/api/hermes-band-images';
-          initialBackgroundImage = "/assets/series_10/cases/jetblack.png";
-        } else if (activeCase === "Titanium") {
-          apiPath = '/api/hermes-band-images';
-          initialBackgroundImage = "/assets/series_10/cases/titanium.png";
-        }
-      }
-    }
-    else if (selectedCollection === "Apple Watch Hermès Series 10") {
-      if (activeCase === "Titanium") {
-        apiPath = '/api/hermes-cases-images';
-        initialBackgroundImage = "/assets/series_10/cases/titanium.png";
-      }
-    }
-    else if (selectedCollection === "Apple Watch SE") { }
-    if (activeCase === "Aluminum") {
-      apiPath = '/api/hermes-cases-images';
-      initialBackgroundImage = "/assets/series_10/cases/jetblack.png";
-    }
-
-    if (apiPath) {
-      fetchImages(apiPath).then((fetchedImages) => {
-        setImages(fetchedImages);
-        // setBackgroundImage(initialBackgroundImage);
-        if (fetchedImages && fetchedImages.length > 0) {
-          setBackgroundImage(fetchedImages[0]); 
-        } else {
-      
-          fetchImages(defaultApiPath).then((defaultImages) => {
-            if (defaultImages && defaultImages.length > 0) {
-              setBackgroundImage(defaultImages[0]); 
-            } else {
-              setBackgroundImage(null); 
-            }
-          });
-        }
-      });
-    }
-
-  }
+  
 
 
 
   useEffect(() => {
+    const updateImages = () => {
+      let apiPath = '';
+      //  let initialBackgroundImage = '';
+      const defaultApiPath = '/api/hermes-band-images';
+  
+      if (selectedCollection === "Apple Watch Series 10") {
+        if (activeFilterOptions === "case") {
+          console.log("clicked case")
+          apiPath = '/api/hermes-cases-images';
+          if (activeCase === "Aluminum") {
+            apiPath = '/api/hermes-cases-images';
+            // initialBackgroundImage = "/assets/series_10/cases/jetblack.png";
+          } else if (activeCase === "Titanium") {
+            apiPath = '/api/hermes-cases-images';
+            //  initialBackgroundImage = "/assets/series_10/cases/titanium.png";
+          }
+        } else if (activeFilterOptions === "band") {
+          console.log("clicked band")
+          apiPath = '/api/hermes-band-images';
+          if (activeCase === "Aluminum") {
+            apiPath = '/api/hermes-band-images';
+            // initialBackgroundImage = "/assets/series_10/cases/jetblack.png";
+          } else if (activeCase === "Titanium") {
+            apiPath = '/api/hermes-band-images';
+            // initialBackgroundImage = "/assets/series_10/cases/titanium.png";
+          }
+        }
+      }
+      else if (selectedCollection === "Apple Watch Hermès Series 10") {
+        if (activeCase === "Titanium") {
+          apiPath = '/api/hermes-cases-images';
+          //  initialBackgroundImage = "/assets/series_10/cases/titanium.png";
+        }
+      }
+      else if (selectedCollection === "Apple Watch SE") { }
+      if (activeCase === "Aluminum") {
+        apiPath = '/api/hermes-cases-images';
+        // initialBackgroundImage = "/assets/series_10/cases/jetblack.png";
+      }
+  
+      if (apiPath) {
+        fetchImages(apiPath).then((fetchedImages) => {
+          setImages(fetchedImages);
+          // setBackgroundImage(initialBackgroundImage);
+          if (fetchedImages && fetchedImages.length > 0) {
+            setBackgroundImage(fetchedImages[0]);
+          } else {
+  
+            fetchImages(defaultApiPath).then((defaultImages) => {
+              if (defaultImages && defaultImages.length > 0) {
+                setBackgroundImage(defaultImages[0]);
+              } else {
+                setBackgroundImage(null);
+              }
+            });
+          }
+        });
+      }
+  
+    }
     updateImages();
-  }, [selectedCollection, selectedOptions, activeFilterOptions]);
+  }, [selectedCollection, selectedOptions, activeFilterOptions,activeCase]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -237,11 +240,11 @@ const DesignImageFooter = () => {
   useEffect(() => {
 
     const fetchImages = async () => {
-      const res = await fetch('/api/hermes-band-images');
-      // const res = await fetch('/api/images');  
+      //  const res = await fetch('/api/hermes-band-images');
+      // // const res = await fetch('/api/images');  
 
-      const data = await res.json();
-     // setImages(data.images);  // Set the fetched image paths
+      // const data = await res.json();
+      // setImages(data.images);  // Set the fetched image paths
     };
 
     fetchImages();
@@ -276,14 +279,14 @@ const DesignImageFooter = () => {
                 >
                   <div className={styles.imageContainer}>
                     {/* Render the image */}
-                    <img
+                    <Image
                       src={activeBandImage}
                       alt={`Band ${index + 1}`}
                       className={styles.img}
                     />
                     {index === currentIndex && (
                       // Render the selected image with dynamic size adjustment
-                      <img
+                      <Image
                         className={`${styles.selectedImage}`}
                         src={activeCaseImage}
                         alt={`Selected Band ${index + 1}`}
@@ -307,7 +310,7 @@ const DesignImageFooter = () => {
           <div
             className={styles.carouselTrack}
             style={{
-              transform: `translateX(-${(currentIndex - 2) * 150}px)`, 
+              transform: `translateX(-${(currentIndex - 2) * 150}px)`,
 
             }}
           >
@@ -319,10 +322,10 @@ const DesignImageFooter = () => {
                 onClick={() => handleSelect(index)}
               >
                 <div className={styles.imageContainer}>
-         
-                  <img src={image} alt={`Band ${index + 1}`} className={`${styles.img} `} />
+
+                  <Image src={image} alt={`Band ${index + 1}`} className={`${styles.img} `} />
                   {index === currentIndex && (
-                    <img
+                    <Image
                       className={`${styles.selectedImage} ${styles.selectedImageCase}`}
                       src={activeBandImage}
                       // src="/assets/series_10/cases/jetblack.png"//{image}
@@ -351,9 +354,9 @@ const DesignImageFooter = () => {
                 onClick={() => handleSelect(index)}
               >
                 <div className={styles.imageContainer}>
-                  <img src={image} alt={`Band ${index + 1}`} className={styles.img} />
+                  <Image src={image} alt={`Band ${index + 1}`} className={styles.img} />
                   {index === currentIndex && (
-                    <img
+                    <Image
                       className={`${styles.selectedImage} ${styles.selectedImageBand}`}
                       src={activeCaseImage}
                       //  src="/assets/series_10/cases/jetblack.png"//{image}

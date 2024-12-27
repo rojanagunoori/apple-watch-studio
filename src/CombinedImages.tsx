@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+
 
 const CombinedImages = ({ selectedImage }) => {
   const otherImage = "https://via.placeholder.com/150?text=Other+Image"; // Replace with your other image
@@ -6,8 +8,8 @@ const CombinedImages = ({ selectedImage }) => {
   return (
     <div style={styles.container}>
       <div style={styles.imageContainer}>
-        <img src={selectedImage} alt="Selected Image" style={styles.selectedImage} />
-        <img src={otherImage} alt="Other Image" style={styles.otherImage} />
+        <Image src={selectedImage} alt="Selected Image" style={styles.selectedImage} />
+        <Image src={otherImage} alt="Other Image" style={styles.otherImage} />
       </div>
     </div>
   );

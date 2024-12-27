@@ -10,8 +10,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const images = imageFiles
       .filter((file) => file.endsWith('.jpg') || file.endsWith('.png'))
-      .map((file, index) => {
-        const customName = `watche-se-band-${index + 1}-${file}`;
+      .map((file) => {
+        //const customName = `watche-se-band-${index + 1}-${file}`;
        // return `/assets/watche_SE/band/${customName}`;
        return `/assets/watche_SE/band/${file}`;
       });

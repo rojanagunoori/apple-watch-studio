@@ -10,8 +10,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const images = imageFiles
       .filter((file) => file.endsWith('.jpg') || file.endsWith('.png'))
-      .map((file, index) => {
-        const customName = `nike-sport-band-${index + 1}-${file}`;
+      .map((file) => {
+        //const customName = `nike-sport-band-${index + 1}-${file}`;
        // return `/assets/series_10/band/nike-sport/normal/${customName}`;
        return `/assets/series_10/band/nike-sport/normal/${file}`;
       });

@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/DesignstudioFooter.module.css";
 import { useFilters } from "@/context/FiltersContext";
 
 
 const DesignstudioFooter = () => {
-  const { selectedCollection, options, updateOptions,selectedOptions, setSelectedOptions ,activeFilterOptions, setActiveFilterOptions} = useFilters();
-  const [activeFilter, setActiveFilter] = useState(null);
+  const {  options, selectedOptions, setSelectedOptions ,activeFilterOptions, setActiveFilterOptions} = useFilters();
+  //const [activeFilter, setActiveFilter] = useState(null);
 
-  const [selectedOptions1, setSelectedOptions1] = useState({
-    size:  options?.size[0],//"42mm", 
-    case: options?.case[0],//"standard", 
-    band: options?.band[0]//"sport", 
-  });
-  console.log(activeFilterOptions)
+ 
+  //console.log(activeFilterOptions)
 
   useEffect(() => {
     // Ensure options and selectedOptions are in sync when the component loads or when collection changes
@@ -23,12 +19,9 @@ const DesignstudioFooter = () => {
         band: selectedOptions.band || options.band[0],
       });
     }
-  }, [options]);
+  }, [options, setSelectedOptions,selectedOptions.size,selectedOptions.case,selectedOptions.band]);
 
-  const handleFilterClick = (filter) => {
-    setActiveFilter(activeFilter === filter ? null : filter);
-  };
-
+  
   const handleFilterClickOptins = (filter) => {
     setActiveFilterOptions(activeFilterOptions === filter ? null : filter);
   };

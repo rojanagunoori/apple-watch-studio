@@ -10,8 +10,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const images = imageFiles
       .filter((file) => file.endsWith('.jpg') || file.endsWith('.png'))
-      .map((file, index) => {
-        const customName = `series-cases-${index + 1}-${file}`;
+      .map((file) => {
+      //  const customName = `series-cases-${index + 1}-${file}`;
         //return `/assets/series_10/cases/${customName}`;
         return `/assets/series_10/cases/${file}`;
       });

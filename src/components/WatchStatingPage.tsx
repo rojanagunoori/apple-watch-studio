@@ -3,11 +3,12 @@
 import { useState } from "react";
 import styles from "../../styles/WatchStudio.module.css";
 import FrontWatchSetUp from "../FrontWatchSetUp";
-import MainFrontWatchSetUp from "../MainFrontWatchSetUp";
+//import MainFrontWatchSetUp from "../MainFrontWatchSetUp";
 import ProductInfo from "./ProductInfo";
 import DesignstudioFooter from "./DesignstudioFooter";
 import ImageDropdownWrapper from "./ImageDropdownWrapper";
-import DesignImageFooter from "./DesignImageFooter.tsx"
+import DesignImageFooter from "./DesignImageFooter"
+import Image from "next/image";
 
 export default function WatchStudio() {
   const [getStartedClicked, setGetStartedClicked] = useState(false);
@@ -22,10 +23,11 @@ export default function WatchStudio() {
   return (
     <div className={styles.studioWrapper}>
       <div className={styles.studiologo}>
-        <img
+        <Image
           src="https://logowik.com/content/uploads/images/930_applewatch.jpg"
           alt="Apple Watch Studio Logo"
           className={styles.logoImage}
+         
         />
       </div>
 

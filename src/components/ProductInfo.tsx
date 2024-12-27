@@ -92,7 +92,7 @@ const priceMapping = {
 
 
 export default function ProductInfo() {
-   const { selectedCollection, options, updateOptions,selectedOptions, setSelectedOptions } = useFilters();
+   const { selectedCollection, selectedOptions,  } = useFilters();
    const activeSize =selectedOptions.size //options?.size?.selected || "46mm"; // Ensure you have a selected value for size
   const activeCase = selectedOptions.case//options?.case?.selected || "Aluminum"; // Active case selected
   const activeBand = selectedOptions.band//options?.band?.selected || "Sport Loop"

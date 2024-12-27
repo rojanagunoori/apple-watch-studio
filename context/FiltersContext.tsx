@@ -2,9 +2,15 @@
 
 import React, { createContext, useContext, useState } from 'react';
 
-const FiltersContext = createContext();
+interface FiltersContextType {
+  selectedCollection: string;
+  setSelectedCollection: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export const FiltersProvider = ({ children }) => {
+//const FiltersContext = createContext();
+const FiltersContext = createContext<FiltersContextType | undefined>(undefined);
+
+export const FiltersProvider = ({ children }: { children: React.ReactNode })=> {
   const [selectedCollection, setSelectedCollection] = useState('Apple Watch Series 10');
   const [options, setOptions] = useState({
     size: [],
@@ -21,59 +27,7 @@ export const FiltersProvider = ({ children }) => {
   const [activeFilter, setActiveFilter] = useState(null);
    const [activeFilterOptions, setActiveFilterOptions] = useState(null);
 
-  const updateOptions1 = (collection) => {
-    let newOptions;
-    switch (collection) {
-      case 'Apple Watch Series 10':
-        setOptions({
-          size: ['42mm', '46mm'],
-          case: ['Aluminum', 'Titanium'],
-          band: [
-            'Stainless Steel',
-            'Sport Loop',
-            'Sport Band',
-            'FineWoven',
-            'Braided Solo Loop',
-            'Solo Loop',
-            'Nike Sport Loop',
-            'Nike Sport Band',
-          ],
-        });
-        break;
-      case 'Apple Watch Hermès Series 10':
-        setOptions({
-          size: ['42mm', '46mm'],
-          case: ['Titanium'],
-          band: ['Hermès Toile H', 'Hermès Torsade', 'Hermès Kilim', 'Hermès Grand H'],
-        });
-        break;
-      case 'Apple Watch SE':
-        setOptions({
-          size: ['42mm', '46mm'],
-          case: ['Aluminum'],
-          band: [
-            'Stainless Steel',
-            'Sport Loop',
-            'Sport Band',
-            'FineWoven',
-            'Braided Solo Loop',
-            'Solo Loop',
-            'Nike Sport Loop',
-            'Nike Sport Band',
-          ],
-        });
-        break;
-      default:
-        setOptions({
-          size: [],
-          case: [],
-          band: [],
-        });
-    }
-    
-    setSelectedCollection(collection);
-  };
-
+ 
   const updateOptions = (collection) => {
     let newOptions;
     switch (collection) {
