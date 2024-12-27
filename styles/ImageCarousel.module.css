@@ -1,0 +1,30 @@
+.carouselWrapper {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .carouselTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carouselButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .carouselImage {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin: 0 10px;
+  }
+  

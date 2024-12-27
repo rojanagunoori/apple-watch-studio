@@ -1,0 +1,74 @@
+.rfDesignstudioFooter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .rfDesignstudioFilters {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .rfDesignstudioFilterList{
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    display: flex;
+    
+  }
+  
+  .button {
+    background: #e8e8ed;
+    color: #1d1d1f;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .rfDesignstudioFilterHeader {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    display: flex;
+    gap: 10;
+    
+  }
+  
+  .rfDesignstudioFilterdim {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .rfDesignstudioFilterdimOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .rfDesignstudioFilterdimOptions li {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .selected {
+    font-weight: bold;
+    color: #1d1d1f;
+   
+    
+  }
+  
+  .rfDesignstudioFilterExpanded {
+    background-color: #ddd;
+    border: 1px solid #ccc;
+  }
+  

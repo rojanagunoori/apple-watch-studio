@@ -1,0 +1,132 @@
+.carouselWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 2rem;
+  }
+  
+  .carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .carouselTrack {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+  
+  .carouselItem {
+    position: relative;
+    margin: 0 10px; /* Space between images */
+    flex: 0 0 auto;
+  }
+  
+  .selected {
+    border: 2px solid #000; /* Add a border around the selected item */
+  }
+  
+  .imageContainer {
+    position: relative;
+  }
+  
+  .selectedImage {
+    position: absolute;
+    top: -20px; 
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10; 
+    opacity: 0.8; 
+  }
+  .img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    max-width: 150px; 
+  }
+  
+  
+  .carouselButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .selectedImage {
+        top: -35px; 
+      }
+      .selectedImageBand{
+        top: 10px !important;
+        width: 200px;
+        height: 120px;
+      }
+      .selectedImageCase{
+        
+        z-index: 12 !important; 
+       
+      }
+  }
+
+  @media (max-width: 768px) {
+    .carousel {
+      width: 90%;
+    }
+  
+    .img {
+      max-width: 120px; 
+    }
+  
+    .selectedImage {
+      top: -45px;
+    }
+    .selectedImageBand{
+      top: 10px !important;
+      width: 180px;
+      height: 100px;
+    }
+    .selectedImageCase{
+        
+      top: 500px !important;
+     
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel {
+      width: 100%;
+    }
+  
+    .img {
+      max-width: 100px;
+    }
+  
+    .selectedImage {
+      top: -52px; 
+    }
+    .selectedImageBand{
+      top: 10px !important;
+      width: 150px;
+      height: 80px;
+    }
+  }

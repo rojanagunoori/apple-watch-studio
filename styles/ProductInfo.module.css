@@ -1,0 +1,93 @@
+.productInfo {
+    display: block;
+
+    text-align: center;
+    padding: 1rem;
+    font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  
+  .sideViewBtn {
+    padding: 0.5rem 1rem;   
+    border: none;
+    cursor: pointer;   
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;  
+    margin-bottom: 1rem;
+    color: #06c;
+
+    text-decoration: underline;
+    vertical-align: top;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1.3333733333;
+  }
+  
+  .productDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .productCollection {   
+    font-size: 0.875rem;
+    color: #6e6e73;
+    font-weight: 600;
+
+ 
+    letter-spacing: -.01em;
+    line-height: 1.3333733333;
+    
+  }
+  
+  .productTitle {  
+    font-size: 1rem;
+    color: #1d1d1f;
+    font-weight: 600;
+
+    overflow: hidden;
+    letter-spacing: -.01em;
+    line-height: 1.3333733333;
+  
+  }
+  
+  .productPrice {
+    
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1d1d1f;
+  }
+  
+  .fullPrice {
+    color: #1d1d1f;
+    display: inline;
+    font-weight: 400;
+    letter-spacing: -.016em;
+    line-height: 1.4285914286;
+  }
+  
+  .price {
+    font-weight: 600;
+    
+    display: inline-block;
+    text-decoration: inherit;
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 600px) {
+    .productInfo {
+      padding: 0.5rem;
+    }
+  
+    .sideViewBtn {
+      width: 100%;
+      font-size: 1rem;
+    }
+  
+    .productCollection,
+    .productTitle,
+    .productPrice {
+      font-size: 0.875rem;
+    }
+  }
+  
